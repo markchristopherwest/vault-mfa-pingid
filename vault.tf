@@ -1,16 +1,7 @@
-terraform {
-  required_providers {
-    vault = {
-      source = "hashicorp/vault"
-      version = "3.15.2"
-    }
-  }
-}
-
 provider "vault" {
   # Configuration options
   address = hcp_vault_cluster.example.vault_public_endpoint_url
-  # token = hcp_vault_cluster_admin_token.example.token
+  token = hcp_vault_cluster_admin_token.example.token
   skip_child_token = true
   skip_get_vault_version = true
 }
@@ -69,8 +60,8 @@ resource "vault_jwt_auth_backend" "example" {
   namespace = each.value.namespace
     description         = "Demonstration of the Terraform JWT auth backend"
     path                = "jwt"
-    oidc_discovery_url  = "https://myco.auth0.com/"
-    bound_issuer        = "https://myco.auth0.com/"
+    oidc_discovery_url  = "https://idpxnyl3m.pingidentity.com/pingid"
+    bound_issuer        = "https://idpxnyl3m.pingidentity.com/pingid"
 }
 
 # https://registry.terraform.io/providers/hashicorp/vault/latest/docs/resources/jwt_auth_backend_role#example-usage
